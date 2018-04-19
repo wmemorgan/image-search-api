@@ -25,7 +25,8 @@
   "homepage": "https://github.com/wmemorgan/image-search-api#readme",
   "dependencies": {
     "dotenv": "^5.0.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "googleapis": "^28.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.3"
