@@ -1,0 +1,29 @@
+{
+  "name": "image-search-api",
+  "version": "0.0.0",
+  "description": "Image search abstraction layer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmemorgan/image-search-api.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "expressJS",
+    "api",
+    "search",
+    "google"
+  ],
+  "author": "Wilfred Morgan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmemorgan/image-search-api/issues"
+  },
+  "homepage": "https://github.com/wmemorgan/image-search-api#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
