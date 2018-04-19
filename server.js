@@ -48,13 +48,18 @@ async function searchResults(req, res) {
     for (let i = 0; i < items.length; i++) {
       itemList.push(items[i]);
     }
-  let image = itemList[0].image
-    let displayResults = {
-      url: itemList[0].link,
-      snippet: itemList[0].snippet,
-      thumbnail: image.thumbnailLink,
-      context: image.contextLink,
+
+  const displayResults = [];
+  for (let i = 0; i < 3; i++) {
+    let itemDict = {
+      url: itemList[i].link,
+      snippet: itemList[i].snippet,
+      thumbnail: itemList[i].image.thumbnailLink,
+      context: itemList[i].image.contextLink,
     }
+    displayResults.push(itemDict);
+  }
+
     console.log(displayResults);
 
     res.send(displayResults);
