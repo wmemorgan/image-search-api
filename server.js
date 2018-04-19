@@ -2,7 +2,7 @@
 require('dotenv').load();
 
 const express = require('express'),
-  port = process.env.PORT,
+  port = process.env.PORT || 3000,
   apikey = process.env.APIKEY,
   app = express();
 
