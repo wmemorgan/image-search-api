@@ -29,19 +29,31 @@ async function runSample(options) {
 }
 
 async function searchResults(req, res) {
-  if (module === require.main) {
-    const options = {
+  // if (module === require.main) {
+    // const options = {
+    //   q: req.params.search,
+    //   apiKey: apikey,
+    //   cx: '008245539995824095644:3f27vg6irlc'
+    // };
+    // let results = await runSample(options)
+    const results = await customsearch.cse.list({
+      cx: '008245539995824095644:3f27vg6irlc',
       q: req.params.search,
-      apiKey: apikey,
-      cx: '008245539995824095644:3f27vg6irlc'
-    };
-    let results = await runSample(options)
-    console.log(results.items)
-
-    res.send(results.items)
+      auth: apikey,
+      searchType: 'image',
+    });
+    let items = results.data.items;
+    // let listings = {
+    //   url: items.link,
+    //   snippet: items.snippet,
+    //   thumbnail: items.image.thumbnailLink,
+    //   context: items.image.contextLink, 
+    // }
+    console.log(items)
+    res.send(items)
 
     // .catch(console.error);
-  }
+  // }
 }
 
 app.get('/imagesearch/:search', (req, res) => {
