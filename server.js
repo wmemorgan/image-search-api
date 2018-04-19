@@ -42,15 +42,22 @@ async function searchResults(req, res) {
       auth: apikey,
       searchType: 'image',
     });
-    let items = results.data.items;
-    // let listings = {
-    //   url: items.link,
-    //   snippet: items.snippet,
-    //   thumbnail: items.image.thumbnailLink,
-    //   context: items.image.contextLink, 
-    // }
-    console.log(items)
-    res.send(items)
+    let items = results.data.items,
+    itemList = [];
+
+    for (let i = 0; i < items.length; i++) {
+      itemList.push(items[i]);
+    }
+  let image = itemList[0].image
+    let displayResults = {
+      url: itemList[0].link,
+      snippet: itemList[0].snippet,
+      thumbnail: image.thumbnailLink,
+      context: image.contextLink,
+    }
+    console.log(displayResults);
+
+    res.send(displayResults);
 
     // .catch(console.error);
   // }
