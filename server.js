@@ -42,7 +42,7 @@ const runSearch = async (req, res) => {
   res.send(displayResults(items, resultCount)).catch(console.error);
 }
 
-app.get('/imagesearch/:search', (req, res) => {
+app.get('/api/imagesearch/:search*', (req, res) => {
   runSearch(req, res).catch(console.error);
 });
 
