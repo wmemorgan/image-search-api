@@ -37,11 +37,13 @@ const getLatestSearch = (res) => {
 
       data.collection("searches").find().sort({ timestamp: -1 }).limit(1)
       .toArray( (err, results) => {
+        var { search, offset} = results[0];
         if (err) throw err;
-        console.log(results[0].search, results[0].offset);
-        runSearch(results[0].search, results[0].offset, res).catch(console.error);
+        console.log(search, offset);
+        runSearch(search, offset, res).catch(console.error);
       })
-        conn.close();
+      
+      conn.close();
     }
   })
 }
@@ -90,8 +92,6 @@ app.get('/api/imagesearch/:search*', (req, res) => {
     timestamp: new Date(),
   }
   insertSearchRecord(record);
-  // res.send("Search record saved");
-  // res.send(runSearch(search, offset))
   runSearch(search, offset, res).catch(console.error);
 });
 
