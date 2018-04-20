@@ -27,17 +27,19 @@ const insertSearchRecord = (doc) => {
   })
 }
 
-const getLatestSearch = () => {
+const getLatestSearch = (res) => {
   MongoClient.connect(dbURL, (err, conn) => {
     if (err) {
       console.log("Unable to connect to database server", dbURL, "Error", err);
     } else {
       console.log('Connection established to', dbURL);
       const data = conn.db("searchdb");
-      query = {$query:{}, $orderby:{timestamp:-1}}
-      data.collection("searches").findOne(query, (err, doc) => {
+
+      data.collection("searches").find().sort({ timestamp: -1 }).limit(1)
+      .toArray( (err, results) => {
         if (err) throw err;
-        console.log(doc.search);
+        console.log(results[0].search, results[0].offset);
+        runSearch(results[0].search, results[0].offset, res).catch(console.error);
       })
         conn.close();
     }
@@ -94,7 +96,7 @@ app.get('/api/imagesearch/:search*', (req, res) => {
 });
 
 app.get('/api/latest/imagesearch', (req, res) => {
-  res.send(getLatestSearch());
+  getLatestSearch(res);
 })
 
 app.listen(port, () => {
