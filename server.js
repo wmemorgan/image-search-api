@@ -35,12 +35,24 @@ const getLatestSearch = (res) => {
       console.log('Connection established to', dbURI);
       const data = conn.db("searchdb");
 
-      data.collection("searches").find().sort({ timestamp: -1 }).limit(1)
+      data.collection("searches").find().sort({ timestamp: -1 })
       .toArray( (err, results) => {
-        var { search, offset} = results[0];
-        if (err) throw err;
-        console.log(search, offset);
-        runSearch(search, offset, res).catch(console.error);
+      // var { search, offset} = results[0];
+      //   if (err) throw err;
+      //   console.log(search, offset);
+      //   runSearch(search, offset, res).catch(console.error);
+
+      var displayList = [];
+      for (let i = 0; i < results.length; i++) {
+        let itemDict = {
+          term: results[i].search,
+          when: results[i].timestamp,
+        }
+        displayList.push(itemDict);
+      }
+      
+      console.log(displayList);
+      res.send(displayList);
       })
       
       conn.close();
@@ -48,7 +60,7 @@ const getLatestSearch = (res) => {
   })
 }
 
-const displayResults = (data, count) => {
+const displayResults = (data) => {
   const list = [],
     displayList = [];
 
@@ -65,6 +77,7 @@ const displayResults = (data, count) => {
     }
     displayList.push(itemDict);
   }
+  
   return displayList;
 }
 
