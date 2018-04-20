@@ -27,6 +27,23 @@ const insertSearchRecord = (doc) => {
   })
 }
 
+const getLatestSearch = () => {
+  MongoClient.connect(dbURL, (err, conn) => {
+    if (err) {
+      console.log("Unable to connect to database server", dbURL, "Error", err);
+    } else {
+      console.log('Connection established to', dbURL);
+      const data = conn.db("searchdb");
+      query = {$query:{}, $orderby:{timestamp:-1}}
+      data.collection("searches").findOne(query, (err, doc) => {
+        if (err) throw err;
+        console.log(doc.search);
+      })
+        conn.close();
+    }
+  })
+}
+
 const displayResults = (data, count) => {
   const list = [],
     displayList = [];
@@ -47,13 +64,13 @@ const displayResults = (data, count) => {
   return displayList;
 }
 
-const runSearch = async (req, res) => {
+const runSearch = async (search, offset, res) => {
   const results = await customsearch.cse.list({
     cx: '008245539995824095644:3f27vg6irlc',
-    q: req.params.search,
+    q: search,
     auth: apikey,
     searchType: 'image',
-    start: req.query.offset,
+    start: offset,
   }),
     items = results.data.items;
 
@@ -62,13 +79,23 @@ const runSearch = async (req, res) => {
 }
 
 app.get('/api/imagesearch/:search*', (req, res) => {
+  var { search } = req.params,
+  { offset } = req.query;
+
   let record = {
-    search: req.params.search,
-    offset: req.query.offset
+    search: search,
+    offset: offset,
+    timestamp: new Date(),
   }
   insertSearchRecord(record);
-  // runSearch(req, res).catch(console.error);
+  // res.send("Search record saved");
+  // res.send(runSearch(search, offset))
+  runSearch(search, offset, res).catch(console.error);
 });
+
+app.get('/api/latest/imagesearch', (req, res) => {
+  res.send(getLatestSearch());
+})
 
 app.listen(port, () => {
   console.log("Server is listening on port:", port);
