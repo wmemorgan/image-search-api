@@ -3,10 +3,29 @@ require('dotenv').load();
 
 const express = require('express'),
   { google } = require('googleapis'),
+  mongodb = require('mongodb'),
+  MongoClient = mongodb.MongoClient,
+  dbURL = 'mongodb://localhost:27017/searchdb',
   port = process.env.PORT || 3000,
   apikey = process.env.APIKEY,
   app = express(),
   customsearch = google.customsearch('v1');
+
+const insertSearchRecord = (doc) => {
+  MongoClient.connect(dbURL, (err, conn) => {
+    if (err) {
+      console.log("Unable to connect to database server", dbURL, "Error", err);
+    } else {
+      console.log('Connection established to', dbURL);
+      const data = conn.db("searchdb");
+      data.collection("searches").insertOne(doc, (err, res) => {
+        if (err) throw err;
+        console.log("1 document inserted");
+        conn.close();
+      });
+    }
+  })
+}
 
 const displayResults = (data, count) => {
   const list = [],
@@ -43,7 +62,12 @@ const runSearch = async (req, res) => {
 }
 
 app.get('/api/imagesearch/:search*', (req, res) => {
-  runSearch(req, res).catch(console.error);
+  let record = {
+    search: req.params.search,
+    offset: req.query.offset
+  }
+  insertSearchRecord(record);
+  // runSearch(req, res).catch(console.error);
 });
 
 app.listen(port, () => {
