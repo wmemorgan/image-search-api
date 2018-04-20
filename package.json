@@ -1,6 +1,6 @@
 {
   "name": "image-search-api",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Image search abstraction layer",
   "main": "index.js",
   "scripts": {
