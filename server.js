@@ -16,7 +16,7 @@ const displayResults = (data, count) => {
     list.push(data[i]);
   }
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < list.length; i++) {
     let itemDict = {
       url: list[i].link,
       snippet: list[i].snippet,
@@ -34,12 +34,12 @@ const runSearch = async (req, res) => {
     q: req.params.search,
     auth: apikey,
     searchType: 'image',
+    start: req.query.offset,
   }),
-    items = results.data.items,
-    resultCount = 10;
+    items = results.data.items;
 
-  console.log(displayResults(items, resultCount));
-  res.send(displayResults(items, resultCount)).catch(console.error);
+  console.log(displayResults(items));
+  res.send(displayResults(items));
 }
 
 app.get('/api/imagesearch/:search*', (req, res) => {
