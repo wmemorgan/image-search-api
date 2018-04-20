@@ -28,7 +28,7 @@ const displayResults = (data, count) => {
   return displayList;
 }
 
-async function searchResults(req, res) {
+const runSearch = async (req, res) => {
   const results = await customsearch.cse.list({
     cx: '008245539995824095644:3f27vg6irlc',
     q: req.params.search,
@@ -43,7 +43,7 @@ async function searchResults(req, res) {
 }
 
 app.get('/imagesearch/:search', (req, res) => {
-  searchResults(req, res);
+  runSearch(req, res).catch(console.error);
 });
 
 app.listen(port, () => {
