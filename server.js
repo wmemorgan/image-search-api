@@ -8,76 +8,43 @@ const express = require('express'),
   app = express(),
   customsearch = google.customsearch('v1');
 
-// const { google } = require('googleapis');
-// const customsearch = google.customsearch('v1');
-// const options = { cx: '008245539995824095644:3f27vg6irlc', q: 'lolcats funny', apiKey: apikey };
-// console.log(options.cx);
-// Ex: node customsearch.js
-//      "Google Node.js"
-//      "API KEY"
-//      "CUSTOM ENGINE ID"
+const displayResults = (data, count) => {
+  const list = [],
+    displayList = [];
 
-async function runSample(options) {
-  // console.log(options);
-  const res = await customsearch.cse.list({
-    cx: options.cx,
-    q: options.q,
-    auth: options.apiKey
-  });
-  // console.log(res.data);
-  return res.data;
+  for (let i = 0; i < data.length; i++) {
+    list.push(data[i]);
+  }
+
+  for (let i = 0; i < count; i++) {
+    let itemDict = {
+      url: list[i].link,
+      snippet: list[i].snippet,
+      thumbnail: list[i].image.thumbnailLink,
+      context: list[i].image.contextLink,
+    }
+    displayList.push(itemDict);
+  }
+  return displayList;
 }
 
 async function searchResults(req, res) {
-  // if (module === require.main) {
-    // const options = {
-    //   q: req.params.search,
-    //   apiKey: apikey,
-    //   cx: '008245539995824095644:3f27vg6irlc'
-    // };
-    // let results = await runSample(options)
-    const results = await customsearch.cse.list({
-      cx: '008245539995824095644:3f27vg6irlc',
-      q: req.params.search,
-      auth: apikey,
-      searchType: 'image',
-    });
-    let items = results.data.items,
-    itemList = [];
+  const results = await customsearch.cse.list({
+    cx: '008245539995824095644:3f27vg6irlc',
+    q: req.params.search,
+    auth: apikey,
+    searchType: 'image',
+  }),
+    items = results.data.items,
+    resultCount = 10;
 
-    for (let i = 0; i < items.length; i++) {
-      itemList.push(items[i]);
-    }
-
-  const displayResults = [];
-  for (let i = 0; i < 3; i++) {
-    let itemDict = {
-      url: itemList[i].link,
-      snippet: itemList[i].snippet,
-      thumbnail: itemList[i].image.thumbnailLink,
-      context: itemList[i].image.contextLink,
-    }
-    displayResults.push(itemDict);
-  }
-
-    console.log(displayResults);
-
-    res.send(displayResults);
-
-    // .catch(console.error);
-  // }
+  console.log(displayResults(items, resultCount));
+  res.send(displayResults(items, resultCount)).catch(console.error);
 }
 
 app.get('/imagesearch/:search', (req, res) => {
-searchResults(req, res)
-
+  searchResults(req, res);
 });
-
-
-
-// module.exports = {
-//   runSample
-// };
 
 app.listen(port, () => {
   console.log("Server is listening on port:", port);
