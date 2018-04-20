@@ -4,6 +4,7 @@
   "description": "Image search abstraction layer",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "repository": {
