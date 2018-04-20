@@ -20,6 +20,6 @@ https://wme-image-search-api.glitch.me/api/imagesearch/lolcats%20?offset=10/
 
 ### Recent Searches:
 To view the most recent searches go to:
-```
+
 [https://wme-image-search-api.glitch.me/api/latest/imagesearch/]('https://wme-image-search-api.glitch.me/api/latest/imagesearch/')
-```
+
