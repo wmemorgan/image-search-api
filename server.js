@@ -5,18 +5,18 @@ const express = require('express'),
   { google } = require('googleapis'),
   mongodb = require('mongodb'),
   MongoClient = mongodb.MongoClient,
-  dbURL = 'mongodb://localhost:27017/searchdb',
+  dbURI = 'mongodb://localhost:27017/searchdb',
   port = process.env.PORT || 3000,
   apikey = process.env.APIKEY,
   app = express(),
   customsearch = google.customsearch('v1');
 
 const insertSearchRecord = (doc) => {
-  MongoClient.connect(dbURL, (err, conn) => {
+  MongoClient.connect(dbURI, (err, conn) => {
     if (err) {
-      console.log("Unable to connect to database server", dbURL, "Error", err);
+      console.log("Unable to connect to database server", dbURI, "Error", err);
     } else {
-      console.log('Connection established to', dbURL);
+      console.log('Connection established to', dbURI);
       const data = conn.db("searchdb");
       data.collection("searches").insertOne(doc, (err, res) => {
         if (err) throw err;
@@ -28,11 +28,11 @@ const insertSearchRecord = (doc) => {
 }
 
 const getLatestSearch = (res) => {
-  MongoClient.connect(dbURL, (err, conn) => {
+  MongoClient.connect(dbURI, (err, conn) => {
     if (err) {
-      console.log("Unable to connect to database server", dbURL, "Error", err);
+      console.log("Unable to connect to database server", dbURI, "Error", err);
     } else {
-      console.log('Connection established to', dbURL);
+      console.log('Connection established to', dbURI);
       const data = conn.db("searchdb");
 
       data.collection("searches").find().sort({ timestamp: -1 }).limit(1)
