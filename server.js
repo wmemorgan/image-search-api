@@ -37,22 +37,17 @@ const getLatestSearch = (res) => {
 
       data.collection("searches").find().sort({ timestamp: -1 })
       .toArray( (err, results) => {
-      // var { search, offset} = results[0];
-      //   if (err) throw err;
-      //   console.log(search, offset);
-      //   runSearch(search, offset, res).catch(console.error);
-
       var displayList = [];
-      for (let i = 0; i < results.length; i++) {
-        let itemDict = {
-          term: results[i].search,
-          when: results[i].timestamp,
+        for (let i = 0; i < results.length; i++) {
+          let itemDict = {
+            term: results[i].search,
+            when: results[i].timestamp,
+          }
+          displayList.push(itemDict);
         }
-        displayList.push(itemDict);
-      }
-      
-      console.log(displayList);
-      res.send(displayList);
+        
+        console.log(displayList);
+        res.send(displayList);
       })
       
       conn.close();
