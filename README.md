@@ -9,9 +9,7 @@ An api that allows you to search for images and review recent searches
 
 ### Image Search Example:
 Go to:
-```
 [https://wme-image-search-api.glitch.me/api/imagesearch/]('https://wme-image-search-api.glitch.me/api/imagesearch/')
-```
 
 Enter the search terms and parameters in the URL
 ```
