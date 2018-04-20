@@ -3,10 +3,50 @@ require('dotenv').load();
 
 const express = require('express'),
   { google } = require('googleapis'),
+  mongodb = require('mongodb'),
+  MongoClient = mongodb.MongoClient,
+  dbURL = 'mongodb://localhost:27017/searchdb',
   port = process.env.PORT || 3000,
   apikey = process.env.APIKEY,
   app = express(),
   customsearch = google.customsearch('v1');
+
+const insertSearchRecord = (doc) => {
+  MongoClient.connect(dbURL, (err, conn) => {
+    if (err) {
+      console.log("Unable to connect to database server", dbURL, "Error", err);
+    } else {
+      console.log('Connection established to', dbURL);
+      const data = conn.db("searchdb");
+      data.collection("searches").insertOne(doc, (err, res) => {
+        if (err) throw err;
+        console.log("1 document inserted");
+        conn.close();
+      });
+    }
+  })
+}
+
+const getLatestSearch = (res) => {
+  MongoClient.connect(dbURL, (err, conn) => {
+    if (err) {
+      console.log("Unable to connect to database server", dbURL, "Error", err);
+    } else {
+      console.log('Connection established to', dbURL);
+      const data = conn.db("searchdb");
+
+      data.collection("searches").find().sort({ timestamp: -1 }).limit(1)
+      .toArray( (err, results) => {
+        var { search, offset} = results[0];
+        if (err) throw err;
+        console.log(search, offset);
+        runSearch(search, offset, res).catch(console.error);
+      })
+      
+      conn.close();
+    }
+  })
+}
 
 const displayResults = (data, count) => {
   const list = [],
@@ -28,13 +68,13 @@ const displayResults = (data, count) => {
   return displayList;
 }
 
-const runSearch = async (req, res) => {
+const runSearch = async (search, offset, res) => {
   const results = await customsearch.cse.list({
     cx: '008245539995824095644:3f27vg6irlc',
-    q: req.params.search,
+    q: search,
     auth: apikey,
     searchType: 'image',
-    start: req.query.offset,
+    start: offset,
   }),
     items = results.data.items;
 
@@ -43,8 +83,21 @@ const runSearch = async (req, res) => {
 }
 
 app.get('/api/imagesearch/:search*', (req, res) => {
-  runSearch(req, res).catch(console.error);
+  var { search } = req.params,
+  { offset } = req.query;
+
+  let record = {
+    search: search,
+    offset: offset,
+    timestamp: new Date(),
+  }
+  insertSearchRecord(record);
+  runSearch(search, offset, res).catch(console.error);
 });
+
+app.get('/api/latest/imagesearch', (req, res) => {
+  getLatestSearch(res);
+})
 
 app.listen(port, () => {
   console.log("Server is listening on port:", port);
