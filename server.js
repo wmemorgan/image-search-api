@@ -98,9 +98,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/imagesearch/:search*', (req, res) => {
-  var { search } = req.params,
-  { offset } = req.query;
-
+  // var { search } = req.query
+  
+  var { search, offset } = req.query
   let record = {
     search: search,
     offset: offset,
@@ -108,6 +108,7 @@ app.get('/api/imagesearch/:search*', (req, res) => {
   }
   insertSearchRecord(record);
   runSearch(search, offset, res).catch(console.error);
+  console.log(search, offset)
 });
 
 app.get('/api/latest/imagesearch', (req, res) => {
