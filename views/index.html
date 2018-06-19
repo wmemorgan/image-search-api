@@ -7,49 +7,44 @@
   <link rel="stylesheet" type="text/css" href="public/style.css" />
 </head>
 <body>
-  <h1>Image Search Abstraction Layer</h1>
+  <div class="container">
+    <h1>Image Search Abstraction Layer</h1>
+    <h4>User Stories:</h4>
+    <blockquote>
+      <ol>
+        <li>
+          I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+        </li>
+        <li>I can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
+        <li>I can get a list of the most recently submitted search strings.</li>
+      </ol>
+    </blockquote>
+    
+    <h4>Image Search</h4>
+    <blockquote>
+      <div class="form-wrapper">
+        <p>Enter the search terms in the search field and the parameters in the offset field</p>
+        <form action="api/imagesearch">
+          <input id="search" type="text" name="search" placeholder="search images">
+          <input id="offset" type="number" name="offset" placeholder="offset">
+          <button id="search-btn">Search</button>
+        </form>
+      </div>
+    </blockquote>
+    
+    <h4>Recent Searches:</h4>
+    <blockquote>
+      <p>To view the most recent searches go to:</p>
+      <a href="https://wme-image-search-api.glitch.me/api/latest/imagesearch/">
+        https://wme-image-search-api.glitch.me/api/latest/imagesearch/
+      </a>
+    </blockquote>
+  </div>
 
-  <h4>User Stories:</h4>
-  <blockquote>
-    <ol>
-      <li>
-        I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
-      </li>
-      <li>I can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
-      <li>I can get a list of the most recently submitted search strings.</li>
-    </ol> 
-  </blockquote>
-
-  <h4>Image Search Example:</h4>
-  <blockquote>
-    <div class="container">
-      <form action="api/imagesearch/:search">
-        <input type="text" id="search" name="search" placeholder="search images">
-        <input type="number" name="offset" id="offset">
-        <button id="search-btn">Search</button>
-      </form>
-      
-    </div>
-    <p>Go to:</p>
-    <a href="https://wme-image-search-api.glitch.me/api/imagesearch/">
-       https://wme-image-search-api.glitch.me/api/imagesearch/
-    </a>
-    <p>Enter the search terms and parameters in the URL</p>
-    <code>
-       https://wme-image-search-api.glitch.me/api/imagesearch/lolcats%20?offset=10/
-    </code>
-  </blockquote>
-
-  <h4>Recent Searches:</h4>
-  <blockquote>
-    <p>To view the most recent searches go to:</p>
-    <a href="https://wme-image-search-api.glitch.me/api/latest/imagesearch/">
-      https://wme-image-search-api.glitch.me/api/latest/imagesearch/
-    </a>
-  </blockquote>
   
   <footer>
     <p>Developed by: Wilfred Morgan</p>
+    <p><a href="https://wilfredmorgan.com">wilfredmorgan.com</a></p>
   </footer>
 
 </body>
