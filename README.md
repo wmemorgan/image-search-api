@@ -9,12 +9,9 @@ An api that allows you to search for images and review recent searches
 
 ### Image Search Example:
 Go to:
-[https://wme-image-search-api.glitch.me/api/imagesearch/]('https://wme-image-search-api.glitch.me/api/imagesearch/')
+[https://wme-image-search-api.glitch.me]('https://wme-image-search-api.glitch.me')
 
-Enter the search terms and parameters in the URL
-```
-https://wme-image-search-api.glitch.me/api/imagesearch/lolcats%20?offset=10/
-```
+Enter the search terms in the search field and the parameters in the offset field.
 
 ### Recent Searches:
 To view the most recent searches go to:
