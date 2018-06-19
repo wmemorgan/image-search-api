@@ -15,13 +15,11 @@ const express = require('express'),
 const insertSearchRecord = (doc) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) {
-      console.log("Unable to connect to database server", dbURI, "Error", err);
+      throw err
     } else {
-      console.log('Connection established to', dbURI);
       const data = conn.db("searchdb");
       data.collection("searches").insertOne(doc, (err, res) => {
         if (err) throw err;
-        console.log("1 document inserted");
         conn.close();
       });
     }
@@ -30,9 +28,8 @@ const insertSearchRecord = (doc) => {
 
 const getLatestSearch = (res) => {
   MongoClient.connect(dbURI, (err, conn) => {
-    if (err) {
-      console.log("Unable to connect to database server", dbURI, "Error", err);
-    } else {
+    if (err) { throw err } 
+    else {
       console.log('Connection established to', dbURI);
       const data = conn.db("searchdb");
 
@@ -46,8 +43,7 @@ const getLatestSearch = (res) => {
           }
           displayList.push(itemDict);
         }
-        
-        console.log(displayList);
+  
         res.send(displayList);
       })
       
@@ -87,7 +83,6 @@ const runSearch = async (search, offset, res) => {
   }),
     items = results.data.items;
 
-  console.log(displayResults(items));
   res.send(displayResults(items));
 }
 
@@ -106,7 +101,6 @@ app.get('/api/imagesearch/:search*', (req, res) => {
   }
   insertSearchRecord(record);
   runSearch(search, offset, res).catch(console.error);
-  console.log(search, offset)
 });
 
 app.get('/api/latest/imagesearch', (req, res) => {
