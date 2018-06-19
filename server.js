@@ -98,8 +98,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/imagesearch/:search*', (req, res) => {
-  // var { search } = req.query
-  
   var { search, offset } = req.query
   let record = {
     search: search,
