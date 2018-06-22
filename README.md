@@ -11,10 +11,13 @@ An api that allows you to search for images and review recent searches
 Go to:
 [https://wme-image-search-api.glitch.me]('https://wme-image-search-api.glitch.me')
 
+Or access API:
+https://wme-image-search-api.glitch.me/api/imagesearch/:search?search={SEARCHTERM}&offset={ENTERNUMBER}
+
 Enter the search terms in the search field and the parameters in the offset field.
 
 ### Recent Searches:
-To view the most recent searches go to:
+To view the most recent searches access API at:
 
 [https://wme-image-search-api.glitch.me/api/latest/imagesearch/]('https://wme-image-search-api.glitch.me/api/latest/imagesearch/')
 

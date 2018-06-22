@@ -29,16 +29,20 @@
           <input id="offset" type="number" name="offset" placeholder="offset" required>
           <button class="search-btn">Search</button>
         </form>
+         <p>Direct API access:</p>
+         <code>
+          https://wme-image-search-api.glitch.me/api/imagesearch/:search?search={SEARCHTERM}&offset={ENTERNUMBER}
+         </code> 
       </div>
     </blockquote>
     
     <h4>Recent Searches:</h4>
     <blockquote>
       <div class="form-wrapper">
-        <p>To view the most recent searches go to:</p>
-        <a href="https://wme-image-search-api.glitch.me/api/latest/imagesearch/">
+        <p>To view the most recent searches access:</p>
+        <code>
           https://wme-image-search-api.glitch.me/api/latest/imagesearch/
-        </a>
+        </code>
         <form action="api/latest/imagesearch" action="get">
           <button class="search-btn">Search History</button>
         </form>
