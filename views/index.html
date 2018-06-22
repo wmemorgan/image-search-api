@@ -25,19 +25,25 @@
       <div class="form-wrapper">
         <p>Enter the search terms in the search field and the parameters in the offset field</p>
         <form action="api/imagesearch/:search">
-          <input id="search" type="text" name="search" placeholder="search images">
-          <input id="offset" type="number" name="offset" placeholder="offset">
-          <button id="search-btn">Search</button>
+          <input id="search" type="text" name="search" placeholder="search images" required>
+          <input id="offset" type="number" name="offset" placeholder="offset" required>
+          <button class="search-btn">Search</button>
         </form>
       </div>
     </blockquote>
     
     <h4>Recent Searches:</h4>
     <blockquote>
-      <p>To view the most recent searches go to:</p>
-      <a href="https://wme-image-search-api.glitch.me/api/latest/imagesearch/">
-        https://wme-image-search-api.glitch.me/api/latest/imagesearch/
-      </a>
+      <div class="form-wrapper">
+        <p>To view the most recent searches go to:</p>
+        <a href="https://wme-image-search-api.glitch.me/api/latest/imagesearch/">
+          https://wme-image-search-api.glitch.me/api/latest/imagesearch/
+        </a>
+        <form action="api/latest/imagesearch" action="get">
+          <button class="search-btn">Search History</button>
+        </form>
+      </div>
+
     </blockquote>
   </div>
 

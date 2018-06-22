@@ -46,6 +46,7 @@ form {
 	grid-gap: 0;
 	grid-column-gap: 0;
 	text-align: center;
+	padding: 1rem;
 }
 
 .form-wrapper {
@@ -59,9 +60,19 @@ input {
 	
 }
 
-#search-btn {
+.search-btn {
 	grid-column: span 2;
 	justify-self: center;
+	width: 20vw;
+	height: 5vh;
+	font-size: 1.15rem;
+	font-weight: bold;
+	letter-spacing: 0.25rem;
+}
+
+.search-history-btn {
+	/* grid-column: span 2;
+	justify-self: left; */
 	width: 20vw;
 	height: 5vh;
 	font-size: 1.15rem;
