@@ -17,32 +17,31 @@ An api that allows you to search for images and review recent searches
 ---
 ### Usage:
 #### Image Search
-**Endpoint:**
+**Endpoint:**  
 ```/api/imagesearch/:search```
 
-**Method:**
+**Method:**  
 ```GET```
 
-**Parameters:**
-```search=SEARCHTERM```
+**Parameters:**  
+```search=SEARCHTERM```  
 ```offset=ENTERNUMBER```
 
-**Example:**
+**Example:**  
 ```https://wme-image-search-api.glitch.me/api/imagesearch/:search?search=avengers&offset=2```
 
 ---
 ##### Recent Searches:
-**Endpoint:**
+**Endpoint:**  
 ```/api/latest/imagesearch/```
 
-**Method:**
+**Method:**  
 ```GET```
 
-To view the most recent searches access API at:
-
-[https://wme-image-search-api.glitch.me/api/latest/imagesearch/]('https://wme-image-search-api.glitch.me/api/latest/imagesearch/')
+To view the most recent searches access API at:  
+[https://wme-image-search-api.glitch.me/api/latest/imagesearch/](https://wme-image-search-api.glitch.me/api/latest/imagesearch/)
 
 ---
-**Go to API demo page:**
-[https://wme-image-search-api.glitch.me]('https://wme-image-search-api.glitch.me')
+**Go to API demo page:**  
+[https://wme-image-search-api.glitch.me](https://wme-image-search-api.glitch.me)
 
