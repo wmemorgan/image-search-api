@@ -4,57 +4,141 @@
   <meta charset="utf-8" />
   <title>Image Search Abstraction Layer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="public/style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Image Search Abstraction Layer</h1>
-    <h4>User Stories:</h4>
-    <blockquote>
-      <ol>
-        <li>
-          I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
-        </li>
-        <li>I can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
-        <li>I can get a list of the most recently submitted search strings.</li>
-      </ol>
-    </blockquote>
-    
-    <h4>Image Search</h4>
-    <blockquote>
-      <div class="form-wrapper">
-        <p>Enter the search terms in the search field and the parameters in the offset field</p>
+  <!-- Header -->
+  <div class="page-header">
+    <!-- Logo -->
+    <div id="logo" class="brand">
+      <a href="#top">Wilfred Morgan</a>
+    </div>
+  </div>
+
+  <!-- Main Body -->
+  <div class="container" id="main">
+    <!-- Home Page -->
+    <section id="intro">
+      <div class="container">
+        <h1 id="headline">Image Search Abstraction Layer</h1>
+        <h3 id="subtitle">A REST API that processes image searches on Gooogle's custom search engine</h3>
+      </div>
+    </section>
+
+    <!-- User Stories -->
+    <section id="home">
+      <div class="container">
+        <h3 class="section-title">User Stories</h3>
+        <div class="section-doc">
+          <ol>
+            <li>
+              I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+            </li>
+            <li>
+              I can paginate through the responses by adding a ?offset=2 parameter to the URL.
+            </li>
+            <li>
+              I can get a list of the most recently submitted search strings.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Search -->
+    <section id="add-user">
+      <div class="container">
+        <h3 class="section-title">Image Search</h3>
+        <div class="section-text">
+          <h4>Endpoint:</h4>
+          <p><code>/api/imagesearch/:search</code></p>
+          <br>
+          <h4>Method:</h4>
+          <p><code>GET</code></p>
+          <br>
+          <h4>Parameters:</h4>
+          <p>
+            <code>search=SEARCHTERM</code>
+          </p>
+          <p>
+            <code>offset=ENTERNUMBER</code>
+          </p>
+          <br>
+          <h4>Example:</h4>
+          <p>
+            <code>
+                https://wme-image-search-api.glitch.me/api/imagesearch/:search?search=avengers&offset=2
+            </code>
+          </p>
+          <br>
+          <p>You can demo the API using the form below</p>
+          <br>
+        </div>
         <form action="api/imagesearch/:search">
           <input id="search" type="text" name="search" placeholder="search images" required>
           <input id="offset" type="number" name="offset" placeholder="offset" required>
           <button class="search-btn">Search</button>
         </form>
-         <p>Direct API access:</p>
-         <code>
-          https://wme-image-search-api.glitch.me/api/imagesearch/:search?search={SEARCHTERM}&offset={ENTERNUMBER}
-         </code> 
       </div>
-    </blockquote>
-    
-    <h4>Recent Searches:</h4>
-    <blockquote>
-      <div class="form-wrapper">
-        <p>To view the most recent searches access:</p>
-        <code>
-          https://wme-image-search-api.glitch.me/api/latest/imagesearch/
-        </code>
+    </section>
+
+    <!-- Search History -->
+    <section id="users">
+      <div class="container">
+        <h3 class="section-title">Search History</h3>
+        <div class="section-text">
+          <h4>Endpoint:</h4>
+          <p>
+            <code>/api/latest/imagesearch/</code>
+          </p>
+          <br>
+          <h4>Method:</h4>
+          <p>
+            <code>GET</code>
+          </p>
+          <br>
+        <p>You can test the API using the form below</p>
         <form action="api/latest/imagesearch" action="get">
           <button class="search-btn">Search History</button>
         </form>
       </div>
+    </section>
 
-    </blockquote>
   </div>
 
-  
+  <!-- Footer -->
   <footer>
-    <p>Developed by: Wilfred Morgan</p>
-    <p><a href="https://wilfredmorgan.com">wilfredmorgan.com</a></p>
+    <div class="cta-group">
+      <div class="cta-text">
+        <p>Need help with your project?</p>
+        <p>Reach out to me at
+          <a href="mailto:wilfred@wilfredmorgan.com?subject=Question" class="contact-btn">wilfred@wilfredmorgan</a>
+        </p>
+      </div>
+        
+    </div>
+  
+    <div class="social-media-group">
+      <div class="social-cta">
+        <p>Connect with me:</p>
+      </div>
+      <div class="social-media-icons">
+        <a href="https://www.linkedin.com/in/wilfredmorgan/" target="_blank">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/wmemorgan" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:wilfred@wilfredmorgan.com?subject=Question" class="contact-btn">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div id="copyright-info">
+      <p><a href="https://wilfredmorgan.com">wilfredmorgan.com</a></p>
+    </div>
   </footer>
 
 </body>
