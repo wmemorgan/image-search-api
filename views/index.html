@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Image Search Abstraction Layer</title>
+  <title>Image Search API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#022140">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css" />
@@ -13,7 +14,7 @@
   <div class="page-header">
     <!-- Logo -->
     <div id="logo" class="brand">
-      <a href="#top">Wilfred Morgan</a>
+      <a href="/">Wilfred Morgan</a>
     </div>
   </div>
 
@@ -22,7 +23,7 @@
     <!-- Home Page -->
     <section id="intro">
       <div class="container">
-        <h1 id="headline">Image Search Abstraction Layer</h1>
+        <h1 id="headline">Image Search API</h1>
         <h3 id="subtitle">A REST API that processes image searches on Gooogle's custom search engine</h3>
       </div>
     </section>
@@ -79,7 +80,7 @@
         <form action="api/imagesearch/:search">
           <input id="search" type="text" name="search" placeholder="search images" required>
           <input id="offset" type="number" name="offset" placeholder="offset" required>
-          <button class="search-btn">Search</button>
+          <input type="submit" value="Search" class="search-btn">
         </form>
       </div>
     </section>
@@ -100,8 +101,10 @@
           </p>
           <br>
         <p>You can test the API using the form below</p>
+        <br>
+        </div>
         <form action="api/latest/imagesearch" action="get">
-          <button class="search-btn">Search History</button>
+          <input type="submit" value="Search History" class="search-btn">
         </form>
       </div>
     </section>
