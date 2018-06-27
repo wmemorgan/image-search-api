@@ -1,6 +1,6 @@
 # Image Search Abstraction Layer
 
-An api that allows you to search for images and review recent searches
+A REST API that processes image searches using the Google custom search engine
 
 ---
 ### Development
