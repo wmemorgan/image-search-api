@@ -31,7 +31,7 @@ An api that allows you to search for images and review recent searches
 ```https://wme-image-search-api.glitch.me/api/imagesearch/:search?search=avengers&offset=2```
 
 ---
-##### Recent Searches:
+##### Search History:
 **Endpoint:**  
 ```/api/latest/imagesearch/```
 
