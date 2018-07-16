@@ -148,6 +148,19 @@ code {
   text-transform: uppercase;
 }
 
+.card-img {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+.card-img img {
+  width: 200px;
+  object-fit: contain;
+}
+
 #subtitle {
 	text-align: center;
 	font-size: 1rem;
