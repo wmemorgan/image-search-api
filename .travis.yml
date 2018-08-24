@@ -1,7 +1,24 @@
-# .travis.yml
 language: node_js
-node_js:
-  - "node"
+cache:
+  directories:
+    - ~/.npm
 
-after_success:
+node_js:
+  - "lts/*"
+
+branches:
+  only:
+    - master
+
+before_install:
+  - npm install -g npm@5
+
+before_script:
+  - npm prune
+
+script:
   - npx sync-glitch-cli
+
+notifications:
+  email:
+    on_failure: always
