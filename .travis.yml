@@ -1,3 +1,7 @@
 # .travis.yml
+language: node_js
+node_js:
+  - "node"
+
 after_success:
   - sync-glitch
