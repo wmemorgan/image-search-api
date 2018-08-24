@@ -4,4 +4,4 @@ node_js:
   - "node"
 
 after_success:
-  - sync-glitch
+ - DEBUG=sync-glitch* sync-glitch
