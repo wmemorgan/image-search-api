@@ -31,6 +31,7 @@
     "mongodb": "^3.0.7"
   },
   "devDependencies": {
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "sync-glitch-cli": "^2.0.1"
   }
 }
