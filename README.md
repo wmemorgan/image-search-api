@@ -1,5 +1,7 @@
 # Image Search Abstraction Layer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wmemorgan/image-search-api.svg)](https://greenkeeper.io/)
+
 A REST API that processes image searches using the Google custom search engine
 
 ---
